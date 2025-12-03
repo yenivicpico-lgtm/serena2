@@ -5,17 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Serena Cosmetics</title>
   <style>
+    /* NUEVA PALETA MORADOS */
     :root {
-      --morado: #a88aed;
-      --azul: #4e7ab1;
-      --verde: #8fb78f;
+      --morado-suave: #a88aed;
+      --morado-fuerte: #6b43c9;
+      --texto-oscuro: #1a1a1a;
+      --blanco: #ffffff;
+    }
+
+    /* FUENTE ELEGANTE */
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap');
+
+    body {
+      font-family: 'Cormorant Garamond', serif !important;
+      background-color: #faf7ff;
+    }
+    :root {
+      --morado: #A88AED;
+      --azul: #5A1FA8;
+      --verde: #A88AED;
       --gris-claro: #f5f5f5;
       --texto-oscuro: #1a1a1a;
     }
 
     body {
       margin: 0;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-family: 'Cormorant Garamond', serif !important;
       background-color: var(--gris-claro);
       color: var(--texto-oscuro);
     }
@@ -324,19 +339,40 @@
   </header>
 
   <section class="hero">
-    <div class="hero-text">
-      <h1>Serena hace un gran paso para una mejor piel</h1>
-      <p>Te mostramos cómo puede lucir tu piel después de 12 semanas con productos clínicamente probados.</p>
-      <button class="btn-primary">Comprar ahora</button>
+    <div class="carousel">
+      <div class="carousel-track">
+        <img src="slide1.jpg" />
+        <img src="slide2.jpg" />
+        <img src="slide3.jpg" />
+      </div>
+      <button class="carousel-btn left">◀</button>
+      <button class="carousel-btn right">▶</button>
     </div>
-    <img src="https://via.placeholder.com/350x350.png?text=Producto" />
+
+    <div class="hero-text center">
+      <h1 class="titulo-hero">SERENA COSMETICS</h1>
+      <h2 class="subtitulo-hero">Tu rutina, tu ritual</h2>
+      <button class="btn-primary" onclick="scrollToContact()">Contáctanos</button>
+    </div>
   </section>
 
   <div class="features">
-    <span>✨ Fórmula limpia</span>
-    <span>🌱 Certificación vegana</span>
-    <span>📦 Empaque eco-friendly</span>
-    <span>💧 Bajo pH</span>
+    <div class="feature-item">
+      <img src="icon-clean.png" class="feature-icon" />
+      <span><img src="icons/formula.svg" class="feature-icon" /> Fórmula limpia</span>
+    </div>
+    <div class="feature-item">
+      <img src="icon-vegan.png" class="feature-icon" />
+      <span><img src="icons/vegan.svg" class="feature-icon" /> Certificación vegana</span>
+    </div>
+    <div class="feature-item">
+      <img src="icon-eco.png" class="feature-icon" />
+      <span><img src="icons/eco.svg" class="feature-icon" /> Empaque eco-friendly</span>
+    </div>
+    <div class="feature-item">
+      <img src="icon-ph.png" class="feature-icon" />
+      <span><img src="icons/ph.svg" class="feature-icon" /> Bajo pH</span>
+    </div>
   </div>
 
   <section class="clean-section">
@@ -348,7 +384,7 @@
   </section>
 
   <section class="bestsellers">
-    <h2>Bestsellers</h2>
+    <h2>Productos populares</h2>
     <div class="cards">
       <div class="card">
         <img src="https://via.placeholder.com/150.png?text=Producto" />
@@ -377,8 +413,10 @@
     </div>
   </section>
 
-  <footer>
-    © 2025 Serena Cosmetics — Skincare Vegano
+  <footer id="contacto">
+    <h2>Contacto</h2>
+    <p class="wave">📞 +00 0000 0000</p>
+    <p class="wave">✉️ contacto@serenacosmetics.com</p>
   </footer>
 <script>
     window.addEventListener('load', () => {
@@ -388,5 +426,67 @@
       setTimeout(() => loader.style.display = 'none', 500);
     });
   </script>
+<script>
+    /* SCROLL SUAVE HACIA CONTACTO */
+    function scrollToContact() {
+      document.getElementById('contacto').scrollIntoView({
+        behavior: 'smooth'
+      });
+      setTimeout(() => {
+        document.querySelectorAll('.wave').forEach((el, i) => {
+          el.style.animation = `waveAnim 0.6s ease ${i * 0.2}s forwards`;
+        });
+      }, 800);
+    }
+
+    /* CARRUSEL HERO */
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    let index = 0;
+
+    document.querySelector('.carousel-btn.right').onclick = () => {
+      index = (index + 1) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    };
+    document.querySelector('.carousel-btn.left').onclick = () => {
+      index = (index - 1 + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+    };
+  </script>
+<section id="contact-section" style="background:#5A1FA8; padding:60px 20px; text-align:center;">
+  <h2 style="color:white; font-size:32px; margin-bottom:20px;">¡Contáctanos!</h2>
+  <div style="background:white; padding:25px; border-radius:20px; display:inline-block; color:black; font-size:18px;">
+    <p>Email: <span class="contact-anim">skinserena218@gmail.com</span></p>
+    <p>Teléfono: <span class="contact-anim">0424-4512903</span></p>
+  </div>
+  <div style="margin-top:25px; display:flex; justify-content:center; gap:25px;">
+    <a href="https://www.instagram.com/serena.skin.vzla?igsh=MXhqYzJpYmhwaHZxbg==" target="_blank">
+      <img src="icons/instagram.svg" style="width:45px; filter:brightness(0) invert(1); cursor:pointer;" />
+    </a>
+    <a href="https://wa.me/message/4JG64PJPJGOG1" target="_blank">
+      <img src="icons/whatsapp.svg" style="width:45px; filter:brightness(0) invert(1); cursor:pointer;" />
+    </a>
+  </div>
+</section>
+
+<section id="about-section" style="padding:70px 20px; display:flex; justify-content:space-between; align-items:center; gap:40px;">
+  <div style="flex:1;">
+    <h2 style="font-size:34px; margin-bottom:15px;">¿Quiénes somos?</h2>
+    <p style="font-size:18px; line-height:1.6; margin-bottom:15px;">
+      En Serena Cosmetics creemos que la belleza empieza por el bienestar. Somos un emprendimiento dedicado a crear productos de cuidado personal inspirados en la naturaleza, con fórmulas suaves, responsables y pensadas para todo tipo de piel.
+    </p>
+    <p style="font-size:18px; line-height:1.6;">
+      Nuestra misión es ofrecer cosmética accesible, de calidad y con identidad propia, combinando ingredientes seguros con diseños modernos y una experiencia agradable en cada uso.
+    </p>
+  </div>
+  <div class="about-carousel" style="flex:1; overflow:hidden; position:relative; height:320px; border-radius:20px;">
+    <div class="about-track" style="display:flex; width:300%; height:100%; animation:slideHero 12s infinite linear;">
+      <img src="about1.jpg" class="about-slide" style="width:100%; object-fit:cover;" />
+      <img src="about2.jpg" class="about-slide" style="width:100%; object-fit:cover;" />
+      <img src="about3.jpg" class="about-slide" style="width:100%; object-fit:cover;" />
+    </div>
+  </div>
+</section>
+
 </body>
 </html>
